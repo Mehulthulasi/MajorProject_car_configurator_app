@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".lexusIS">
+
+    <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:src="@drawable/logo11"
+        android:contentDescription="TODO"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:ignore="ContentDescription,HardcodedText" />
+
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@+id/imageView7"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/myButton"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="99dp"
+                android:src="@drawable/left"
+                android:background="@android:color/darker_gray"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <ImageView
+                android:id="@+id/middleImage"
+                android:layout_width="307dp"
+                android:layout_height="149dp"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/is"
+                app:layout_constraintEnd_toStartOf="@+id/secondButton"
+                app:layout_constraintStart_toEndOf="@+id/myButton"
+                app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/carDescription"
+                android:layout_width="307dp"
+                android:layout_height="18dp"
+                android:layout_marginTop="-0dp"
+                android:layout_marginLeft="-307dp"
+                android:text=""
+                android:visibility="gone"
+                app:layout_constraintTop_toBottomOf="@+id/middleImage"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+
+            <ImageButton
+                android:id="@+id/secondButton"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="1dp"
+                android:layout_marginTop="99dp"
+                android:src="@drawable/right"
+                android:background="@android:color/darker_gray"
+                app:layout_constraintEnd_toEndOf="@id/middleImage"
+                tools:ignore="HardcodedText" />
+
+            <ImageButton
+                android:id="@+id/thirdButton"
+                android:layout_width="42dp"
+                android:layout_height="42dp"
+                android:layout_marginLeft="-280dp"
+                android:layout_marginTop="170dp"
+                android:src="@drawable/c1"
+                android:background="@android:color/transparent"
+                android:text=""
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/middleImage" />
+
+            <ImageButton
+                android:id="@+id/fourthButton"
+                android:layout_width="42dp"
+                android:layout_height="42dp"
+                android:layout_marginTop="170dp"
+                android:src="@drawable/c2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/thirdButton" />
+
+            <ImageButton
+                android:id="@+id/fifthButton"
+                android:layout_width="42dp"
+                android:layout_height="42dp"
+                android:layout_marginTop="170dp"
+                android:src="@drawable/c3"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/fourthButton" />
+
+            <ImageButton
+                android:id="@+id/sixthButton"
+                android:layout_width="99dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="214dp"
+                android:layout_marginLeft="-107dp"
+                android:backgroundTint="@color/green"
+                android:text="SELECT"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/fifthButton" />
+            <!-- interior image -->
+
+            <ImageButton
+                android:id="@+id/seventhButton"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="390dp"
+                android:layout_marginLeft="-247dp"
+                android:src="@drawable/left"
+                android:background="@android:color/darker_gray"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <ImageView
+                android:id="@+id/secondImage"
+                android:layout_width="307dp"
+                android:layout_height="149dp"
+                android:layout_marginTop="300dp"
+                android:src="@drawable/is"
+                app:layout_constraintEnd_toStartOf="@+id/secondButton"
+                app:layout_constraintStart_toEndOf="@+id/myButton"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+
+            <ImageButton
+                android:id="@+id/eighthButton"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="1dp"
+                android:layout_marginTop="390dp"
+                android:src="@drawable/right"
+                android:background="@android:color/darker_gray"
+                app:layout_constraintEnd_toEndOf="@id/secondImage"
+                tools:ignore="HardcodedText" />
+            <ImageButton
+                android:id="@+id/ninthButton"
+                android:layout_width="42dp"
+                android:layout_height="42dp"
+                android:layout_marginLeft="-280dp"
+                android:layout_marginTop="450dp"
+                android:src="@drawable/isinblcbb"
+                android:background="@android:color/transparent"
+                android:text=""
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/middleImage" />
+
+            <ImageButton
+                android:id="@+id/tenthButton"
+                android:layout_width="42dp"
+                android:layout_height="42dp"
+                android:layout_marginTop="450dp"
+                android:src="@drawable/isinbrobb"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/thirdButton" />
+
+            <ImageButton
+                android:id="@+id/eleventhButton"
+                android:layout_width="42dp"
+                android:layout_height="42dp"
+                android:layout_marginTop="450dp"
+                android:src="@drawable/isinredbb"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/fourthButton"/>
+            <!-- wheels-->
+            <ImageButton
+                android:id="@+id/twelfthButton"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="625dp"
+                android:layout_marginLeft="-255dp"
+                android:src="@drawable/left"
+                android:background="@android:color/darker_gray"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <ImageView
+                android:id="@+id/thirdImage"
+                android:layout_width="307dp"
+                android:layout_height="149dp"
+                android:layout_marginTop="600dp"
+                android:src="@drawable/is"
+                app:layout_constraintEnd_toStartOf="@+id/secondButton"
+                app:layout_constraintStart_toEndOf="@+id/myButton"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+
+            <ImageButton
+                android:id="@+id/thirteenButton"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="1dp"
+                android:layout_marginTop="625dp"
+                android:src="@drawable/right"
+                android:background="@android:color/darker_gray"
+                app:layout_constraintEnd_toEndOf="@id/secondImage"
+                tools:ignore="HardcodedText" />
+            <ImageButton
+                android:id="@+id/fourteenthButton"
+                android:layout_width="42dp"
+                android:layout_height="42dp"
+                android:layout_marginLeft="-280dp"
+                android:layout_marginTop="750dp"
+                android:src="@drawable/c1"
+                android:background="@android:color/transparent"
+                android:text=""
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/middleImage" />
+
+            <ImageButton
+                android:id="@+id/fifteenthButton"
+                android:layout_width="42dp"
+                android:layout_height="42dp"
+                android:layout_marginTop="750dp"
+                android:src="@drawable/c2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/thirdButton" />
+
+            <ImageButton
+                android:id="@+id/sixteenthButton"
+                android:layout_width="42dp"
+                android:layout_height="42dp"
+                android:layout_marginTop="750dp"
+                android:src="@drawable/c3"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/fourthButton"></ImageButton>
+
+            <!-- Add more buttons or views if needed -->
+
+        </LinearLayout>
+
+        <!-- Add your other views inside the ScrollView if needed -->
+
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

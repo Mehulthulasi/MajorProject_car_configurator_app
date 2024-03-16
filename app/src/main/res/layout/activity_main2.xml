@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rootView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity2">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        tools:ignore="UselessParent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- First Set of ImageViews and Buttons -->
+            <ImageView
+                android:id="@+id/imageView1"
+                android:layout_width="match_parent"
+                android:layout_height="135dp"
+                android:layout_marginTop="16dp"
+                android:contentDescription="TODO"
+                android:scaleType="centerCrop"
+                android:src="@drawable/lexus"
+                tools:ignore="ContentDescription,HardcodedText" />
+
+            <Button
+                android:id="@+id/button1"
+                android:layout_width="125dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Button 1"
+                tools:ignore="HardcodedText"
+                android:background="@drawable/custom_button"
+                android:onClick="navigateToActivity1"
+                android:layout_gravity="center_horizontal"/>
+
+            <!-- Second Set of ImageViews and Buttons -->
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="match_parent"
+                android:layout_height="138dp"
+                android:layout_marginTop="16dp"
+                android:contentDescription="TODO"
+                android:scaleType="centerCrop"
+                android:src="@drawable/logo9"
+                tools:ignore="ContentDescription,HardcodedText" />
+
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="125dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Button 1"
+                tools:ignore="HardcodedText"
+                android:background="@drawable/custom_button"
+                android:onClick="navigateToActivity2"
+                android:layout_gravity="center_horizontal"/>
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="match_parent"
+                android:layout_height="138dp"
+                android:layout_marginTop="16dp"
+                android:contentDescription="TODO"
+                android:scaleType="centerCrop"
+                android:src="@drawable/logo6"
+                tools:ignore="ContentDescription,HardcodedText" />
+
+            <Button
+                android:id="@+id/button3"
+                android:layout_width="125dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Button 1"
+                tools:ignore="HardcodedText"
+                android:background="@drawable/custom_button"
+                android:onClick="navigateToActivity1"
+                android:layout_gravity="center_horizontal"/>
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="match_parent"
+                android:layout_height="138dp"
+                android:layout_marginTop="16dp"
+                android:contentDescription="TODO"
+                android:scaleType="centerCrop"
+                android:src="@drawable/mb"
+                tools:ignore="ContentDescription,HardcodedText" />
+
+            <Button
+                android:id="@+id/button4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Button 1"
+                tools:ignore="HardcodedText"
+                android:background="@drawable/custom_button"
+                android:onClick="navigateToActivity1"/>
+            <ImageView
+                android:id="@+id/imageView5"
+                android:layout_width="match_parent"
+                android:layout_height="138dp"
+                android:layout_marginTop="16dp"
+                android:contentDescription="TODO"
+                android:scaleType="centerCrop"
+                android:src="@drawable/porsche"
+                tools:ignore="ContentDescription,HardcodedText" />
+
+            <Button
+                android:id="@+id/button5"
+                android:layout_width="125dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Button 1"
+                tools:ignore="HardcodedText"
+                android:background="@drawable/custom_button"
+                android:onClick="navigateToActivity1"
+                android:layout_gravity="center_horizontal"/>
+            <ImageView
+                android:id="@+id/imageView6"
+                android:layout_width="match_parent"
+                android:layout_height="138dp"
+                android:layout_marginTop="16dp"
+                android:contentDescription="TODO"
+                android:scaleType="centerCrop"
+                android:src="@drawable/skoda"
+                tools:ignore="ContentDescription,HardcodedText" />
+
+            <Button
+                android:id="@+id/button6"
+                android:layout_width="125dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Button 1"
+                tools:ignore="HardcodedText"
+                android:background="@drawable/custom_button"
+                android:onClick="navigateToActivity1"
+                android:layout_gravity="center_horizontal"/>
+
+            <!-- Repeat the pattern for additional sets -->
+
+        </LinearLayout>
+
+    </ScrollView>
+</LinearLayout>

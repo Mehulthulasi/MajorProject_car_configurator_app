@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">MajorProject</string>
+    <string name="button_1">Button 1</string>
+    <string name="button_2">Button 2</string>
+    <string name="todo">TODO</string>
+    <string name="click_me">Click me!</string>
+</resources>

@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity3">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        tools:ignore="UselessParent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- First Set of ImageViews and Buttons -->
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:src="@drawable/logo11">
+            </ImageView>
+
+            <ImageView
+                android:id="@+id/imageView1"
+                android:layout_width="match_parent"
+                android:layout_height="176dp"
+                android:layout_marginTop="1dp"
+                android:contentDescription="TODO"
+                android:scaleType="centerCrop"
+                android:src="@drawable/is"
+                tools:ignore="ContentDescription,HardcodedText" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:text="THE 2024 IS LINE"
+                android:textStyle="bold"
+                android:gravity="center">
+
+            </TextView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:text="From its daring style and responsive handling to the powerful V8 of the IS 500 F SPORT \nPerformance, get to know some of the driver-inspired features found across the IS line."
+                android:gravity="center"
+                android:textSize="10sp">
+
+            </TextView>
+
+            <Button
+                android:id="@+id/IS"
+                android:layout_width="125dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:background="@drawable/custom_button"
+                android:text="SELECT"
+                tools:ignore="HardcodedText"
+                android:layout_gravity="center_horizontal"
+                />
+            <!-- Second Set of ImageViews and Buttons -->
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="match_parent"
+                android:layout_height="176dp"
+                android:layout_marginTop="1dp"
+                android:contentDescription="TODO"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ls"
+                tools:ignore="ContentDescription,HardcodedText" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:text="THE 2024 LS LINE"
+                android:textStyle="bold"
+                android:gravity="center">
+
+            </TextView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:text="From the hand crafted interior details to the advanced Teammate technology offered on the LS Hybrid, get to know some of the driver-inspired features found across the LS line."
+                android:gravity="center"
+                android:textSize="10sp">
+
+            </TextView>
+
+            <Button
+                android:id="@+id/LS"
+                android:layout_width="125dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:text="SELECT"
+                android:background="@drawable/custom_button"
+                tools:ignore="HardcodedText"
+                android:layout_gravity="center_horizontal"
+                />
+            <!-- Second Set of ImageViews and Buttons -->
+
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="match_parent"
+                android:layout_height="176dp"
+                android:layout_marginTop="1dp"
+                android:contentDescription="TODO"
+                android:scaleType="centerCrop"
+                android:src="@drawable/lx"
+                tools:ignore="ContentDescription,HardcodedText" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:text="THE 2024 LX LINE"
+                android:textStyle="bold"
+                android:gravity="center">
+            </TextView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:text="Get to know some of the driver-inspired features found across the LX line, from the provocative style and superb performance of the LX F SPORT Handling to the indulgent, Lexus-exclusive four-seat configuration of the LX Ultra Luxury."
+                android:gravity="center"
+                android:textSize="10sp">
+
+            </TextView>
+
+            <Button
+                android:id="@+id/LX"
+                android:layout_width="125dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="1dp"
+                android:backgroundTint="@color/black"
+                android:background="@drawable/custom_button"
+                android:text="SELECT"
+                tools:ignore="HardcodedText" />
+            <!-- Second Set of ImageViews and Buttons -->
+
+
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="match_parent"
+                android:layout_height="176dp"
+                android:layout_marginTop="1dp"
+                android:contentDescription="TODO"
+                android:scaleType="centerCrop"
+                android:src="@drawable/rx"
+                tools:ignore="ContentDescription,HardcodedText" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:text="THE 2024 RX LINE
+"
+                android:textStyle="bold"
+                android:gravity="center">
+            </TextView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:text="From the thoughtful cabin appointments to the all-new plug-in electric hybrid powertrain, get to know some of the driver-inspired features found across the RX line."
+                android:gravity="center"
+                android:textSize="10sp">
+
+            </TextView>
+
+            <Button
+                android:id="@+id/RX"
+                android:layout_width="125dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:background="@drawable/custom_button"
+                android:text="SELECT"
+                tools:ignore="HardcodedText"
+                android:layout_gravity="center_horizontal"
+                />
+            <!-- Second Set of ImageViews and Buttons -->
+
+
+            <ImageView
+                android:id="@+id/imageView5"
+                android:layout_width="match_parent"
+                android:layout_height="176dp"
+                android:layout_marginTop="1dp"
+                android:contentDescription="TODO"
+                android:scaleType="centerCrop"
+                android:src="@drawable/es"
+                tools:ignore="ContentDescription,HardcodedText" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:text="THE 2024 ES LINE
+"
+                android:textStyle="bold"
+                android:gravity="center">
+            </TextView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:text="From its exhilarating F SPORT models and available all-wheel drive capability to the sophisticated style and remarkable efficiency of the Hybrid, get to know some of the driver-inspired features found across the ES line."
+                android:gravity="center"
+                android:textSize="10sp">
+
+            </TextView>
+
+            <Button
+                android:id="@+id/ES"
+                android:layout_width="125dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:background="@drawable/custom_button"
+                android:text="SELECT"
+                tools:ignore="HardcodedText"
+                android:layout_gravity="center_horizontal"
+                />
+
+
+            <!-- Second Set of ImageViews and Buttons -->
+
+
+        </LinearLayout>
+
+    </ScrollView>
+</LinearLayout>

@@ -37,7 +37,7 @@
                 android:layout_marginTop="16dp"
                 android:text="Button 1"
                 tools:ignore="HardcodedText"
-                android:background="@drawable/custom_button"
+                android:backgroundTint="@color/purple"
                 android:onClick="navigateToActivity1"
                 android:layout_gravity="center_horizontal"/>
 
@@ -59,7 +59,7 @@
                 android:layout_marginTop="16dp"
                 android:text="Button 1"
                 tools:ignore="HardcodedText"
-                android:background="@drawable/custom_button"
+                android:backgroundTint="@color/purple"
                 android:onClick="navigateToActivity2"
                 android:layout_gravity="center_horizontal"/>
             <ImageView
@@ -79,7 +79,7 @@
                 android:layout_marginTop="16dp"
                 android:text="Button 1"
                 tools:ignore="HardcodedText"
-                android:background="@drawable/custom_button"
+                android:backgroundTint="@color/purple"
                 android:onClick="navigateToActivity1"
                 android:layout_gravity="center_horizontal"/>
             <ImageView
@@ -94,13 +94,15 @@
 
             <Button
                 android:id="@+id/button4"
-                android:layout_width="match_parent"
+                android:layout_width="127dp"
+
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                android:backgroundTint="@color/purple"
+                android:onClick="navigateToActivity1"
                 android:text="Button 1"
-                tools:ignore="HardcodedText"
-                android:background="@drawable/custom_button"
-                android:onClick="navigateToActivity1"/>
+                tools:ignore="HardcodedText" />
+
             <ImageView
                 android:id="@+id/imageView5"
                 android:layout_width="match_parent"
@@ -118,7 +120,7 @@
                 android:layout_marginTop="16dp"
                 android:text="Button 1"
                 tools:ignore="HardcodedText"
-                android:background="@drawable/custom_button"
+                android:backgroundTint="@color/purple"
                 android:onClick="navigateToActivity1"
                 android:layout_gravity="center_horizontal"/>
             <ImageView
@@ -138,7 +140,7 @@
                 android:layout_marginTop="16dp"
                 android:text="Button 1"
                 tools:ignore="HardcodedText"
-                android:background="@drawable/custom_button"
+                android:backgroundTint="@color/purple"
                 android:onClick="navigateToActivity1"
                 android:layout_gravity="center_horizontal"/>
 

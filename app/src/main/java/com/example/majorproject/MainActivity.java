@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
     private void navigateToListViewActivity() {
         // Add the code to navigate to ListViewActivity here
         Log.d("Navigation", "Navigating to ListViewActivity.");
-        Intent intent = new Intent(MainActivity.this, MainActivity2.class);
+        Intent intent = new Intent(MainActivity.this,lexusIS.class);
         startActivity(intent);
         // Optional: finish the current activity if you don't want to go back to it
         // finish();

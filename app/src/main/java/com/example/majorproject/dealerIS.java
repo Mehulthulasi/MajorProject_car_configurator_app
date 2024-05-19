@@ -7,79 +7,78 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
-import com.squareup.picasso.Picasso;
-import java.util.ArrayList;
 
 public class dealerIS extends AppCompatActivity {
-    private ArrayList<String> selectedCarImages;
-    private String carDescr;
-    private String carIntr;
-    private String carEng;
-    private String carWh;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dealer_is);
 
-        // Get the passed data from the Intent
+        // Get the intent that started this activity
         Intent intent = getIntent();
-        if (intent != null) {
-            // Retrieve the arrays of image resources
-            selectedCarImages = intent.getStringArrayListExtra("selectedCarImages");
 
-            // Retrieve the descriptions
-            carDescr = intent.getStringExtra("carDescription");
-            carIntr = intent.getStringExtra("carInterior");
-            carEng = intent.getStringExtra("carEngine");
-            carWh = intent.getStringExtra("carWheels");
+        // Retrieve the data passed from the previous activity
+        int[] selectedCarImages = intent.getIntArrayExtra("selectedCarImages");
+        int[] selectedInteriorImages = intent.getIntArrayExtra("selectedInteriorImages");
+        int[] selectedEngineImages = intent.getIntArrayExtra("selectedEngineImages");
+        int[] selectedWheelsImages = intent.getIntArrayExtra("selectedWheelsImages");
 
-            // Display descriptions
-            displayDescription(carDescr, R.id.textView);
-            displayDescription(carIntr, R.id.textView2);
-            displayDescription(carEng, R.id.textView3);
-            displayDescription(carWh, R.id.textView4);
+        String carDescription = intent.getStringExtra("carDescription");
+        String carInterior = intent.getStringExtra("carInterior");
+        String carEngine = intent.getStringExtra("carEngine");
+        String carWheels = intent.getStringExtra("carWheels");
+
+        // Set views with received data
+        ImageView imageView = findViewById(R.id.imageView);
+        ImageView imageView2 = findViewById(R.id.imageView2);
+        ImageView imageView3 = findViewById(R.id.imageView3);
+        ImageView imageView4 = findViewById(R.id.imageView4);
+
+        TextView textView = findViewById(R.id.textView);
+        TextView textView2 = findViewById(R.id.textView2);
+        TextView textView3 = findViewById(R.id.textView3);
+        TextView textView4 = findViewById(R.id.textView4);
+        TextView textView5 = findViewById(R.id.textView5);
+
+        if (selectedCarImages != null && selectedCarImages.length > 0) {
+            imageView.setImageResource(selectedCarImages[0]);
+        }
+        if (selectedInteriorImages != null && selectedInteriorImages.length > 0) {
+            imageView2.setImageResource(selectedInteriorImages[0]);
+        }
+        if (selectedEngineImages != null && selectedEngineImages.length > 0) {
+            imageView3.setImageResource(selectedEngineImages[0]);
+        }
+        if (selectedWheelsImages != null && selectedWheelsImages.length > 0) {
+            imageView4.setImageResource(selectedWheelsImages[0]);
         }
 
-        // Display images
-        displayImages(selectedCarImages, new int[]{R.id.imageView, R.id.imageView2, R.id.imageView3, R.id.imageView4});
+        textView.setText(carDescription);
+        textView2.setText(carInterior);
+        textView3.setText(carEngine);
+        textView4.setText(carWheels);
+        textView5.setText("Additional information if needed");
 
-        // Find the button
-        Button button = findViewById(R.id.button8);
-        // Set OnClickListener to handle button click
-        button.setOnClickListener(new View.OnClickListener() {
+        // Find the button by its id
+        Button selectButton = findViewById(R.id.dealer);
+
+        // Set OnClickListener to the button
+        selectButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Create Intent to start the next activity
-                Intent nextIntent = new Intent(dealerIS.this, sales.class);
-                // Pass the selected car images along with other descriptions to the next activity
-                nextIntent.putStringArrayListExtra("selectedCarImages", selectedCarImages);
-                nextIntent.putExtra("carDescription", carDescr);
-                nextIntent.putExtra("carInterior", carIntr);
-                nextIntent.putExtra("carEngine", carEng);
-                nextIntent.putExtra("carWheels", carWh);
-                startActivity(nextIntent);
+                // Create a new intent to start the sales activity
+                Intent salesIntent = new Intent(dealerIS.this, sales.class);
+                // Pass the necessary data as extras to the sales activity
+                salesIntent.putExtra("carDescription", carDescription);
+                salesIntent.putExtra("carInterior", carInterior);
+                salesIntent.putExtra("carEngine", carEngine);
+                salesIntent.putExtra("carWheels", carWheels);
+                // Pass the image resource ID as an extra
+                salesIntent.putExtra("selectedCarImage", selectedCarImages[0]);
+                // Start the sales activity
+                startActivity(salesIntent);
             }
         });
-    }
-
-    // Method to display images in the specified ImageViews
-    private void displayImages(ArrayList<String> imageResources, int[] imageViewIds) {
-        if (imageResources != null && !imageResources.isEmpty() && imageViewIds != null && imageResources.size() == imageViewIds.length) {
-            for (int i = 0; i < imageViewIds.length; i++) {
-                ImageView imageView = findViewById(imageViewIds[i]);
-                Picasso.get().load(imageResources.get(i)).into(imageView);
-            }
-        }
-    }
-
-    // Method to display description in the specified TextView
-    private void displayDescription(String description, int textViewId) {
-        if (description != null) {
-            // Find the TextView in the layout
-            TextView textView = findViewById(textViewId);
-            // Set the description to the TextView
-            textView.setText(description);
-        }
     }
 }

@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:src="@drawable/logo11"
-        android:contentDescription="TODO"
+        android:contentDescription="Logo"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -22,7 +22,7 @@
     <ScrollView
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintTop_toBottomOf="@+id/imageView7"
+        app:layout_constraintTop_toBottomOf="@id/imageView7"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent">
@@ -30,330 +30,298 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="vertical"
+            android:padding="16dp">
 
-            <ImageButton
-                android:id="@+id/myButton"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginTop="99dp"
-                android:src="@drawable/left"
-                android:background="@android:color/darker_gray"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+            <!-- Main car image with left and right buttons -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
 
+                <ImageButton
+                    android:id="@+id/myButton"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/left"
+                    android:background="@android:color/darker_gray" />
 
-            <ImageView
-                android:id="@+id/middleImage"
-                android:layout_width="307dp"
-                android:layout_height="149dp"
-                android:layout_marginTop="20dp"
+                <ImageView
+                    android:id="@+id/middleImage"
+                    android:layout_width="0dp"
+                    android:layout_height="150dp"
+                    android:layout_weight="1"
+                    android:layout_marginHorizontal="16dp"
+                    android:src="@drawable/is"
+                    android:contentDescription="Car Image" />
 
-                app:layout_constraintEnd_toStartOf="@+id/secondButton"
-                app:layout_constraintStart_toEndOf="@+id/myButton"
-                app:layout_constraintTop_toTopOf="parent" />
-            <TextView
-                android:id="@+id/carDescription"
-                android:layout_width="307dp"
-                android:layout_height="18dp"
-                android:layout_marginTop="-0dp"
-                android:layout_marginLeft="-307dp"
-                android:text=""
-                android:visibility="gone"
-                app:layout_constraintTop_toBottomOf="@+id/middleImage"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
+                <ImageButton
+                    android:id="@+id/secondButton"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/right"
+                    android:background="@android:color/darker_gray" />
 
+            </LinearLayout>
 
-            <ImageButton
-                android:id="@+id/secondButton"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginLeft="1dp"
-                android:layout_marginTop="99dp"
-                android:src="@drawable/right"
-                android:background="@android:color/darker_gray"
-                app:layout_constraintEnd_toEndOf="@id/middleImage"
-                tools:ignore="HardcodedText" />
+            <!-- Color selection buttons -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_horizontal"
+                android:layout_marginTop="16dp">
 
-            <ImageButton
-                android:id="@+id/thirdButton"
-                android:layout_width="42dp"
-                android:layout_height="42dp"
-                android:layout_marginLeft="-280dp"
-                android:layout_marginTop="170dp"
-                android:src="@drawable/c1"
-                android:background="@android:color/transparent"
-                android:text=""
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/middleImage" />
+                <ImageButton
+                    android:id="@+id/thirdButton"
+                    android:layout_width="42dp"
+                    android:layout_height="42dp"
+                    android:src="@drawable/c1"
+                    android:background="@android:color/transparent" />
 
-            <ImageButton
-                android:id="@+id/fourthButton"
-                android:layout_width="42dp"
-                android:layout_height="42dp"
-                android:layout_marginTop="170dp"
-                android:layout_marginLeft="2dp"
-                android:src="@drawable/c2"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/thirdButton" />
+                <ImageButton
+                    android:id="@+id/fourthButton"
+                    android:layout_width="42dp"
+                    android:layout_height="42dp"
+                    android:layout_marginStart="8dp"
+                    android:src="@drawable/c2"
+                    android:background="@android:color/transparent" />
 
+                <ImageButton
+                    android:id="@+id/fifthButton"
+                    android:layout_width="42dp"
+                    android:layout_height="42dp"
+                    android:layout_marginStart="8dp"
+                    android:src="@drawable/c3"
+                    android:background="@android:color/transparent" />
 
+            </LinearLayout>
 
-            <ImageButton
-                android:id="@+id/fifthButton"
-                android:layout_width="39dp"
-                android:layout_height="42dp"
-                android:layout_marginTop="170dp"
-                android:layout_marginLeft="8dp"
-                android:src="@drawable/c3"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/fourthButton" />
+            <!-- Interior image with navigation buttons -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginTop="32dp">
 
-            <!-- interior image -->
+                <ImageButton
+                    android:id="@+id/seventhButton"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/left"
+                    android:background="@android:color/darker_gray" />
 
-            <ImageButton
-                android:id="@+id/seventhButton"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginTop="390dp"
-                android:layout_marginLeft="-256dp"
-                android:src="@drawable/left"
-                android:background="@android:color/darker_gray"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                <ImageView
+                    android:id="@+id/secondImage"
+                    android:layout_width="0dp"
+                    android:layout_height="150dp"
+                    android:layout_weight="1"
+                    android:layout_marginHorizontal="16dp"
+                    android:src="@drawable/is"
+                    android:contentDescription="Interior Image" />
 
+                <ImageButton
+                    android:id="@+id/eighthButton"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/right"
+                    android:background="@android:color/darker_gray" />
 
-            <ImageView
-                android:id="@+id/secondImage"
-                android:layout_width="307dp"
-                android:layout_height="149dp"
-                android:layout_marginTop="300dp"
-                android:src="@drawable/is"
-                app:layout_constraintEnd_toStartOf="@+id/secondButton"
-                app:layout_constraintStart_toEndOf="@+id/myButton"
-                app:layout_constraintTop_toTopOf="parent" />
+            </LinearLayout>
 
+            <!-- Interior color selection buttons -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_horizontal"
+                android:layout_marginTop="16dp">
 
+                <ImageButton
+                    android:id="@+id/ninthButton"
+                    android:layout_width="42dp"
+                    android:layout_height="42dp"
+                    android:src="@drawable/isinblcbb"
+                    android:background="@android:color/transparent" />
 
-            <ImageButton
-                android:id="@+id/eighthButton"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginLeft="1dp"
-                android:layout_marginTop="390dp"
-                android:src="@drawable/right"
-                android:background="@android:color/darker_gray"
-                app:layout_constraintEnd_toEndOf="@id/secondImage"
-                tools:ignore="HardcodedText" />
-            <ImageButton
-                android:id="@+id/ninthButton"
-                android:layout_width="42dp"
-                android:layout_height="42dp"
-                android:layout_marginLeft="-280dp"
-                android:layout_marginTop="450dp"
-                android:src="@drawable/isinblcbb"
-                android:background="@android:color/transparent"
-                android:text=""
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/secondImage" />
+                <ImageButton
+                    android:id="@+id/tenthButton"
+                    android:layout_width="42dp"
+                    android:layout_height="42dp"
+                    android:layout_marginStart="8dp"
+                    android:src="@drawable/isinbrobb"
+                    android:background="@android:color/transparent" />
 
-            <ImageButton
-                android:id="@+id/tenthButton"
-                android:layout_width="42dp"
-                android:layout_height="42dp"
-                android:layout_marginTop="450dp"
-                android:src="@drawable/isinbrobb"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/secondImage" />
+                <ImageButton
+                    android:id="@+id/eleventhButton"
+                    android:layout_width="42dp"
+                    android:layout_height="42dp"
+                    android:layout_marginStart="8dp"
+                    android:src="@drawable/isinredbb"
+                    android:background="@android:color/transparent" />
 
-            <ImageButton
-                android:id="@+id/eleventhButton"
-                android:layout_width="42dp"
-                android:layout_height="42dp"
-                android:layout_marginTop="450dp"
-                android:src="@drawable/isinredbb"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/secondImage"/>
-            <!-- wheels-->
+            </LinearLayout>
 
-
+            <!-- Engine images and selection buttons -->
             <ImageView
                 android:id="@+id/thirdImage"
-                android:layout_width="307dp"
-                android:layout_height="149dp"
-                android:layout_marginLeft="-200dp"
-                android:layout_marginTop="530dp"
-                android:layout_marginRight="100dp"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_marginTop="32dp"
                 android:src="@drawable/is"
-                app:layout_constraintEnd_toStartOf="@+id/secondButton"
-                app:layout_constraintStart_toEndOf="@+id/myButton"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:contentDescription="Engine Image" />
 
-            <ImageButton
-                android:id="@+id/fourteenthButton"
-                android:layout_width="42dp"
-                android:layout_height="42dp"
-                android:layout_marginLeft="-320dp"
-                android:layout_marginTop="680dp"
-                android:src="@drawable/is300bg"
-                android:background="@android:color/transparent"
-                android:text=""
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/thirdImage" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_horizontal"
+                android:layout_marginTop="16dp">
 
-            <ImageButton
-                android:id="@+id/fifteenthButton"
-                android:layout_width="42dp"
-                android:layout_height="42dp"
-                android:layout_marginTop="680dp"
-                android:src="@drawable/is350bg"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/thirdImage" />
+                <ImageButton
+                    android:id="@+id/fourteenthButton"
+                    android:layout_width="42dp"
+                    android:layout_height="42dp"
+                    android:src="@drawable/is300bg"
+                    android:background="@android:color/transparent" />
 
-            <ImageButton
-                android:id="@+id/sixteenthButton"
-                android:layout_width="42dp"
-                android:layout_height="42dp"
-                android:layout_marginTop="680dp"
-                android:src="@drawable/isfbg"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/thirdImage"/>
+                <ImageButton
+                    android:id="@+id/fifteenthButton"
+                    android:layout_width="42dp"
+                    android:layout_height="42dp"
+                    android:layout_marginStart="8dp"
+                    android:src="@drawable/is350bg"
+                    android:background="@android:color/transparent" />
 
+                <ImageButton
+                    android:id="@+id/sixteenthButton"
+                    android:layout_width="42dp"
+                    android:layout_height="42dp"
+                    android:layout_marginStart="8dp"
+                    android:src="@drawable/isfbg"
+                    android:background="@android:color/transparent" />
+
+            </LinearLayout>
+
+            <!-- Wheels images and navigation buttons -->
             <ImageView
                 android:id="@+id/fourthImage"
-                android:layout_width="304dp"
-                android:layout_height="149dp"
-                android:layout_marginLeft="-219dp"
-                android:layout_marginTop="770dp"
-                android:layout_marginRight="100dp"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_marginTop="32dp"
                 android:src="@drawable/is"
+                android:contentDescription="Wheels Image" />
 
-                app:layout_constraintTop_toTopOf="parent" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginTop="16dp">
 
-            <ImageButton
-                android:id="@+id/wh1Button"
-                android:layout_width="42dp"
-                android:layout_height="42dp"
-                android:layout_marginLeft="-320dp"
-                android:layout_marginTop="925dp"
-                android:src="@drawable/iswh1bg"
-                android:background="@android:color/transparent"
-                android:text=""
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/fourthImage" />
+                <ImageButton
+                    android:id="@+id/whrButton"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/left"
+                    android:background="@android:color/darker_gray" />
 
-            <ImageButton
-                android:id="@+id/wh2Button"
-                android:layout_width="42dp"
-                android:layout_height="42dp"
-                android:layout_marginTop="925dp"
-                android:src="@drawable/iswhbg2"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/fourthImage" />
+                <ImageButton
+                    android:id="@+id/whlButton"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:background="@android:color/darker_gray"
+                    android:src="@drawable/right" />
 
-            <ImageButton
-                android:id="@+id/wh3Button"
-                android:layout_width="42dp"
-                android:layout_height="42dp"
-                android:layout_marginTop="925dp"
-                android:src="@drawable/iswhbg3"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/fourthImage"/>
-            <ImageButton
-                android:id="@+id/wh4Button"
-                android:layout_width="42dp"
-                android:layout_height="42dp"
-                android:layout_marginTop="925dp"
-                android:src="@drawable/iswhbg4"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/fourthImage"/>
-            <ImageButton
-                android:id="@+id/whrButton"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginTop="869dp"
-                android:layout_marginLeft="-310dp"
-                android:src="@drawable/left"
-                android:background="@android:color/darker_gray"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-            <ImageButton
-                android:id="@+id/whlButton"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginLeft="320dp"
-                android:layout_marginTop="869dp"
-                android:src="@drawable/right"
-                android:background="@android:color/darker_gray"
-                app:layout_constraintEnd_toEndOf="@id/fourthImage"
-                tools:ignore="HardcodedText" />
+            </LinearLayout>
 
+            <!-- Wheels selection buttons -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_horizontal"
+                android:layout_marginTop="16dp">
 
+                <ImageButton
+                    android:id="@+id/wh1Button"
+                    android:layout_width="42dp"
+                    android:layout_height="42dp"
+                    android:src="@drawable/iswh1bg"
+                    android:background="@android:color/transparent" />
+
+                <ImageButton
+                    android:id="@+id/wh2Button"
+                    android:layout_width="42dp"
+                    android:layout_height="42dp"
+                    android:layout_marginStart="8dp"
+                    android:src="@drawable/iswhbg2"
+                    android:background="@android:color/transparent" />
+
+                <ImageButton
+                    android:id="@+id/wh3Button"
+                    android:layout_width="42dp"
+                    android:layout_height="42dp"
+                    android:layout_marginStart="8dp"
+                    android:src="@drawable/iswhbg3"
+                    android:background="@android:color/transparent" />
+
+                <ImageButton
+                    android:id="@+id/wh4Button"
+                    android:layout_width="42dp"
+                    android:layout_height="42dp"
+                    android:layout_marginStart="8dp"
+                    android:src="@drawable/iswhbg4"
+                    android:background="@android:color/transparent" />
+
+            </LinearLayout>
+
+            <!-- Select Button -->
             <Button
                 android:id="@+id/sixthButton"
-                android:layout_width="99dp"
-                android:layout_height="50dp"
-                android:layout_marginLeft="-250dp"
-                android:layout_marginTop="999dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="32dp"
                 android:backgroundTint="@color/purple"
-                android:text="SELECT"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/fourthImage" />
+                android:text="SELECT" />
+
+            <!-- Hidden TextViews -->
+            <TextView
+                android:id="@+id/carDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text=""
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/carinterior"
-                android:layout_width="307dp"
-                android:layout_height="18dp"
-                android:layout_marginLeft="-210dp"
-                android:layout_marginTop="280dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 android:text=""
-                android:visibility="gone"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/secondImage" />
+                android:visibility="gone" />
+
             <TextView
                 android:id="@+id/carengine"
-                android:layout_width="307dp"
-                android:layout_height="18dp"
-                android:layout_marginLeft="-210dp"
-                android:layout_marginTop="509dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 android:text=""
-                android:visibility="gone"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/thirdImageImage" />
+                android:visibility="gone" />
+
             <TextView
                 android:id="@+id/carWheels"
-                android:layout_width="307dp"
-                android:layout_height="18dp"
-                android:layout_marginLeft="-210dp"
-                android:layout_marginTop="749dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 android:text=""
-                android:visibility="gone"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/fourthImageImage" />
-
+                android:visibility="gone" />
 
         </LinearLayout>
-
-
-        <!-- Add your other views inside the ScrollView if needed -->
-
     </ScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

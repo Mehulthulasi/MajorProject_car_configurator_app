@@ -1,8 +1,5 @@
 package com.example.majorproject;
 
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -10,335 +7,195 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import androidx.annotation.NonNull;
+import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
-import java.util.ArrayList;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+import android.content.Intent;
+
 
 public class lexusIS extends AppCompatActivity {
+    private int currentImageIndex = 0;
+    private int currentSecondImageIndex = 0;
+    private int currentThirdImageIndex = 0;
+    private int currentFourthImageIndex = 0;
+    private int[] imageResources = {R.drawable.is, R.drawable.is2, R.drawable.is3, R.drawable.is4, R.drawable.is5};
+    private int[] redCarImages = {R.drawable.isb1, R.drawable.isb2, R.drawable.isb3,R.drawable.isb4,R.drawable.isb5};
+    private int[] whiteCarImages = {R.drawable.isr1, R.drawable.isr2, R.drawable.isr3,R.drawable.isr4,R.drawable.isr5};
+    private final int[] interiorblack = {R.drawable.isinblc1, R.drawable.isinblc2};
+    private int[] interiorbrown = {R.drawable.isinbro1, R.drawable.isinbro2};
+    private int[] interiored = {R.drawable.isinred1, R.drawable.isinred2};
+    private int[] engine = {R.drawable.is300};
+    private int[] engine1 = {R.drawable.is350};
+    private int[] engine2 = { R.drawable.isf};
+    private int[] wheels1 = { R.drawable.iswh1,R.drawable.iswh1side};
+    private int[] wheels2 = { R.drawable.iswh2,R.drawable.iswh2side};
+    private int[] wheels3 = { R.drawable.iswh3,R.drawable.iswh3side};
+    private int[] wheels4 = { R.drawable.iswh4,R.drawable.iswh4side};
 
-    private ImageView imageView1; // For the first folder
-    private ImageView imageView2;
-    private ImageView imageView3;
-    private ImageView imageView4;// For the next folder
-    private ImageButton prevButton;
-    private ImageButton nextButton;
-    private ImageButton thirdButton;
-    private ImageButton fourthButton;
-    private ImageButton fifthButton;
-    private ImageButton seventhButton;
-    private ImageButton eighthButton;
-    private ImageButton ninthButton;
-    private ImageButton tenthButton;
-    private ImageButton eleventhButton;
-    private ImageButton fourteenthButton;
-    private ImageButton fifteenthButton;
-    private ImageButton sixteenthButton;
-    private  ImageButton whrButton;
-    private  ImageButton whlButton;
-    private  ImageButton wh1Button;
-    private  ImageButton wh2Button;
-    private  ImageButton wh3Button;
-    private  ImageButton wh4Button;
-    private Button sixthButton;
-    private TextView color1;
-    private TextView color2;
-    private TextView color3;
-    private TextView interiorcolor1;
-    private TextView interiorcolor2;
-    private TextView interiorcolor3;
-    private TextView engine1;
-    private TextView engine2;
-    private TextView engine3;
-    private TextView wheelDescriptionTextView1;
-    private TextView wheelDescriptionTextView2;
-    private TextView wheelDescriptionTextView3;
-    private TextView wheelDescriptionTextView4;
+    private int[] currentCarImages;
+    private int[] currentInteriorImages;
+    private int[] currentengineImages;
+    private int[] currentWheelsImages;
 
-
-    private FirebaseStorage storage;
-    private StorageReference storageReference1; // For the first folder
-    private StorageReference storageReference2; // For the next folder
-    private StorageReference storageReference3;
-    private StorageReference storageReference4;
-    private ArrayList<String> imageNames1; // For the first folder
-    private ArrayList<String> imageNames2; // For the next folder
-    private ArrayList<String> imageNames3;
-    private ArrayList<String> imageNames4;
-    private int currentIndex1;
-    private int currentIndex2;
-    private int currentIndex3;
-    private int currentIndex4;
-    private boolean loadDefaultImages = true;
-    private boolean loadDefaultImages2 = true;
-    private boolean loadDefaultImages3 = true;
-    private boolean loadDefaultImages4 = true;
+    private ImageView imageView;
+    private ImageView secondImageView;
+    private ImageView thirdImageView;
+    private ImageView fourthImageView;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_lexus_is);
-
-        imageView1 = findViewById(R.id.middleImage);
-        imageView2 = findViewById(R.id.secondImage);
-        imageView3 = findViewById(R.id.thirdImage);
-        imageView4 = findViewById(R.id.fourthImage);
-        prevButton = findViewById(R.id.myButton);
-        nextButton = findViewById(R.id.secondButton);
-        thirdButton = findViewById(R.id.thirdButton);
-        fourthButton = findViewById(R.id.fourthButton);
-        fifthButton = findViewById(R.id.fifthButton);
-        seventhButton = findViewById(R.id.seventhButton);
-        eighthButton = findViewById(R.id.eighthButton);
-        ninthButton = findViewById(R.id.ninthButton);
-        tenthButton = findViewById(R.id.tenthButton);
-        eleventhButton = findViewById(R.id.eleventhButton);
-        fourteenthButton = findViewById(R.id.fourteenthButton);
-        fifteenthButton = findViewById(R.id.fifteenthButton);
-        sixteenthButton = findViewById(R.id.sixteenthButton);
-        whrButton=findViewById(R.id.whrButton);
-        whlButton=findViewById(R.id.whlButton);
-        wh1Button=findViewById(R.id.wh1Button);
-        wh2Button=findViewById(R.id.wh2Button);
-        wh3Button=findViewById(R.id.wh3Button);
-        wh4Button=findViewById(R.id.wh4Button);
-        sixthButton=findViewById(R.id.sixthButton);
-        color1=findViewById(R.id.carDescription);
-        color2=findViewById(R.id.carDescription);
-        color3=findViewById(R.id.carDescription);
-        interiorcolor1=findViewById(R.id.carinterior);
-        interiorcolor2=findViewById(R.id.carinterior);
-        interiorcolor3=findViewById(R.id.carinterior);
-        engine1=findViewById(R.id.carengine);
-        engine2=findViewById(R.id.carengine);
-        engine3=findViewById(R.id.carengine);
-        wheelDescriptionTextView1 = findViewById(R.id.carWheels);
-        wheelDescriptionTextView2 = findViewById(R.id.carWheels);
-        wheelDescriptionTextView3= findViewById(R.id.carWheels);
-        wheelDescriptionTextView4 = findViewById(R.id.carWheels);
-        color1.setVisibility(View.GONE);
-        color2.setVisibility(View.GONE);
-        color3.setVisibility(View.GONE);
-        interiorcolor1.setVisibility(View.GONE);
-        interiorcolor2.setVisibility(View.GONE);
-        interiorcolor3.setVisibility(View.GONE);
-        engine1.setVisibility(View.GONE);
-        engine2.setVisibility(View.GONE);
-        engine3.setVisibility(View.GONE);
-        wheelDescriptionTextView1.setVisibility(View.GONE);
-        wheelDescriptionTextView2.setVisibility(View.GONE);
-        wheelDescriptionTextView3.setVisibility(View.GONE);
-        wheelDescriptionTextView4.setVisibility(View.GONE);
-
-
-        // Initialize Firebase Storage
-        storage = FirebaseStorage.getInstance();
-
-        // Initialize StorageReferences for both folders
-        storageReference1 = storage.getReference().child("is_white");
-        storageReference2 = storage.getReference().child("interior");
-        storageReference3 = storage.getReference().child("engine");
-        storageReference4 = storage.getReference().child("wheels");
-
-        // Initialize image names lists
-        imageNames1 = new ArrayList<>();
-        imageNames1.add("is1.jpeg");
-        imageNames1.add("isr4.jpeg");
-        imageNames1.add("isr3.jpeg");
-
-        imageNames2 = new ArrayList<>();
-        imageNames2.add("isinblc1.jpeg");
-        imageNames2.add("next_image2.jpeg");
-        imageNames2.add("next_image3.jpeg");
-
-        imageNames3 = new ArrayList<>();
-        imageNames3.add("is300.jpeg");
-        imageNames3.add("is350.jpeg");
-        imageNames3.add("isf.jpeg");
-
-        imageNames4 = new ArrayList<>();
-        imageNames4.add("iswh1.jpeg");
-        imageNames4.add("iswh2.jpeg");
-        imageNames4.add("iswh3.jpeg");
-
-
-
-        // Set current indices
-        currentIndex1 = 0;
-        currentIndex2 = 0;
-        currentIndex3 = 0;
-        currentIndex4 = 0;
-
-        // Load first images
-        loadImage(imageView1, storageReference1, imageNames1, currentIndex1);
-        loadImage(imageView2, storageReference2, imageNames2, currentIndex2);
-        loadImage(imageView3, storageReference3, imageNames3, currentIndex3);
-        loadImage(imageView4, storageReference4, imageNames4, currentIndex4);
-
-
-        // Set click listeners for next and previous buttons
-        prevButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showPreviousImage();
-            }
-        });
-        seventhButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showPreviousImage2();
-            }
-        });
-        whlButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showPreviousImage3();
-            }
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            return insets;
         });
 
-        nextButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showNextImage();
-            }
-        });
-        eighthButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showNextImage2();
-            }
-        });
-        whrButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showNextImage3();
-            }
-        });
-        /////////////////////////left right button:)
+        imageView = findViewById(R.id.middleImage);
+        secondImageView = findViewById(R.id.secondImage);
+        thirdImageView = findViewById(R.id.thirdImage);
+        fourthImageView = findViewById(R.id.fourthImage);
 
-        // Set click listener for the thirdButton to load specific images
-        ///exterior color
-        thirdButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                loadSpecificImages();
-                showcolor1("Description for Wheel 1");
-            }
-        });
 
-        fourthButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                loadSpecificImages1();
-                showcolor2("Description for Wheel 1");
-            }
-        });
+        ImageButton secondButton = findViewById(R.id.secondButton);
+        ImageButton myButton = findViewById(R.id.myButton);
+        ImageButton thirdButton = findViewById(R.id.thirdButton);
+        ImageButton fourthButton = findViewById(R.id.fourthButton);
+        ImageButton fifthButton = findViewById(R.id.fifthButton);
+        Button sixthButton = findViewById(R.id.sixthButton);
+        ImageButton seventhButton = findViewById(R.id.seventhButton);
+        ImageButton eighthButton = findViewById(R.id.eighthButton);
+        ImageButton ninthButton = findViewById(R.id.ninthButton);
+        ImageButton tenthButton = findViewById(R.id.tenthButton);
+        ImageButton eleventhButton = findViewById(R.id.eleventhButton);
+        ImageButton fourteenthButton = findViewById(R.id.fourteenthButton);
+        ImageButton fifteenthButton = findViewById(R.id.fifteenthButton);
+        ImageButton sixteenthButton = findViewById(R.id.sixteenthButton);
+        ImageButton wh1Button = findViewById(R.id.wh1Button);
+        ImageButton wh2Button = findViewById(R.id.wh2Button);
+        ImageButton wh3Button = findViewById(R.id.wh3Button);
+        ImageButton wh4Button = findViewById(R.id.wh4Button);
+        ImageButton whlButton = findViewById(R.id.whlButton);
+        ImageButton whrButton = findViewById(R.id.whrButton);
 
-        fifthButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                loadSpecificImages2();
-                showcolor3("Description for Wheel 1");
-            }
-        });
-        ///exterior color end
-        ///interior color start
-        ninthButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                loadSpecificImages3();
-                showinteriorcolor1("Description for Wheel 1");
+        // Your other initialization code...
 
-            }
-        });
-
-        tenthButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                loadSpecificImages4();
-                showinteriorcolor2("Description for Wheel 1");
-
-            }
-        });
-
-        eleventhButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                loadSpecificImages5();
-                showinteriorcolor3("Description for Wheel 1");
-
-            }
-        });
-        //////////interior color end//
-        ////engine option start///
-        fourteenthButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                loadSpecificImages6();
-                showengine1("Description for Wheel 1");
-
-            }
-        });
-        fifteenthButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                loadSpecificImages7();
-                showengine2("Description for Wheel 1");
-            }
-        });
-        sixteenthButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                loadSpecificImages8();
-                showengine3("Description for Wheel 1");
-            }
-        });
-        //////engine option end/////
-        //////wheel option start//////
+        // Set click listener for next image (first set)
         wh1Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loadSpecificImages9();
-                // Show or update the description
-                showWheelDescription1("Description for Wheel 1");
+                currentWheelsImages = wheels1;
+                currentFourthImageIndex = 0;  // Reset index when switching wheels
+                updateFourthImageView();
+                updateCarWheels("IS F SPORT");
             }
         });
 
         wh2Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loadSpecificImages10();
-                showWheelDescription2("Description for Wheel 1");
+                currentWheelsImages = wheels2;
+                currentFourthImageIndex = 0;  // Reset index when switching wheels
+                updateFourthImageView();
+                updateCarWheels("IS F SPORT");
             }
         });
+
         wh3Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loadSpecificImages11();
-                showWheelDescription3("Description for Wheel 1");
+                currentWheelsImages = wheels3;
+                currentFourthImageIndex = 0;  // Reset index when switching wheels
+                updateFourthImageView();
+                updateCarWheels("IS F SPORT");
             }
         });
+
         wh4Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loadSpecificImages12();
-                showWheelDescription4("Description for Wheel 1");
+                currentWheelsImages = wheels4;
+                currentFourthImageIndex = 0;  // Reset index when switching wheels
+                updateFourthImageView();
+                updateCarWheels("IS F SPORT");
             }
         });
-        ////wheel option end//////
+
+        whlButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showPreviousFourthImage();
+            }
+        });
+
+        whrButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showNextFourthImage();
+            }
+        });
+
+        secondButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showNextImage();
+            }
+        });
+
+        // Set click listener for previous image (first set)
+        myButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showPreviousImage();
+            }
+        });
+        // Set click listener for third button (Red car image)
+        // Set click listener for third button (Red car image) - update first image view
+        thirdButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                currentCarImages = null;  // Set to null to use the default images
+                updateImageView();
+            }
+        });
+
+// Set click listener for fourth button (White car image) - update first image view
+        fourthButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                currentCarImages = redCarImages;
+                currentImageIndex = 0;  // Reset index when switching cars
+                updateImageView();
+                updateCarDescription("IS F SPORT");
+            }
+        });
+
+// Set click listener for fifth button (Black car image) - update first image view
+        fifthButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                currentCarImages = whiteCarImages;
+                currentImageIndex = 0;  // Reset index when switching cars
+                updateThirdImageView();
+                updateCarDescription("IS 500 F SPORT PERFORMANCE");
+            }
+        });
+
+// Set click listener for sixth button (Next activity) - pass selected image to dealer activity
+        // Set click listener for sixth button (Next activity) - pass selected images to dealer activity
         sixthButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Initialize selected images arrays
-                ArrayList<String> selectedCarImages;
-                ArrayList<String> selectedInteriorImages;
-                ArrayList<String> selectedEngineImages;
-                ArrayList<String> selectedWheelsImages;
+                int[] selectedCarImages;
+                int[] selectedInteriorImages;
+                int[] selectedEngineImages;
+                int[] selectedWheelsImages;
 
                 // Initialize descriptions
                 String carDescription;
@@ -347,24 +204,36 @@ public class lexusIS extends AppCompatActivity {
                 String carWheels;
 
                 // Check which images are currently selected
-                if (!loadDefaultImages) {
-                    // If images from the first folder are selected
-                    selectedCarImages = imageNames1;
-                    selectedInteriorImages = imageNames2;
-                    selectedEngineImages = imageNames3;
-                    selectedWheelsImages = imageNames4;
+                if (currentCarImages == redCarImages) {
+                    // If red car images are selected
+                    selectedCarImages = redCarImages;
+                    selectedInteriorImages = interiorbrown;
+                    selectedEngineImages = engine;
+                    selectedWheelsImages = currentWheelsImages; // Use the current wheels images
 
-                    // Set descriptions for the first set of images
-                    carDescription = "Description for first set of images";
-                    carInterior = "Interior description for first set of images";
-                    carEngine = "Engine description for first set of images";
-                    carWheels = "Wheels description for first set of images";
+                    // Set descriptions for red car
+                    carDescription = "Red Car Description";
+                    carInterior = "Red Car Interior Description";
+                    carEngine = "Red Car Engine Description";
+                    carWheels = "Red Car Wheels Description";
+                } else if (currentCarImages == whiteCarImages) {
+                    // If white car images are selected
+                    selectedCarImages = whiteCarImages;
+                    selectedInteriorImages = interiorblack;
+                    selectedEngineImages = engine1;
+                    selectedWheelsImages = currentWheelsImages; // Use the current wheels images
+
+                    // Set descriptions for white car
+                    carDescription = "White Car Description";
+                    carInterior = "White Car Interior Description";
+                    carEngine = "White Car Engine Description";
+                    carWheels = "White Car Wheels Description";
                 } else {
                     // If default images are selected
-                    selectedCarImages = new ArrayList<>();
-                    selectedInteriorImages = new ArrayList<>();
-                    selectedEngineImages = new ArrayList<>();
-                    selectedWheelsImages = new ArrayList<>();
+                    selectedCarImages = imageResources;
+                    selectedInteriorImages = interiored;
+                    selectedEngineImages = engine2;
+                    selectedWheelsImages = currentWheelsImages; // Use the current wheels images
 
                     // Set default descriptions
                     carDescription = "Default Car Description";
@@ -374,14 +243,13 @@ public class lexusIS extends AppCompatActivity {
                 }
 
                 // Check if there are selected images
-                // Check if there are selected images
-                if (!selectedCarImages.isEmpty() && !selectedInteriorImages.isEmpty() && !selectedEngineImages.isEmpty() && !selectedWheelsImages.isEmpty()) {
+                if (selectedCarImages != null && selectedInteriorImages != null) {
                     // Pass the selected images and descriptions to the next activity
                     Intent intent = new Intent(lexusIS.this, dealerIS.class);
-                    intent.putStringArrayListExtra("selectedCarImages", selectedCarImages);
-                    intent.putStringArrayListExtra("selectedInteriorImages", selectedInteriorImages);
-                    intent.putStringArrayListExtra("selectedEngineImages", selectedEngineImages);
-                    intent.putStringArrayListExtra("selectedWheelsImages", selectedWheelsImages);
+                    intent.putExtra("selectedCarImages", selectedCarImages);
+                    intent.putExtra("selectedInteriorImages", selectedInteriorImages);
+                    intent.putExtra("selectedEngineImages", selectedEngineImages);
+                    intent.putExtra("selectedWheelsImages", selectedWheelsImages);
 
                     // Pass the descriptions
                     intent.putExtra("carDescription", carDescription);
@@ -399,435 +267,225 @@ public class lexusIS extends AppCompatActivity {
 
 
 
-    }
 
-    private void showNextImage() {
-        currentIndex1 = (currentIndex1 + 1) % imageNames1.size();
-        loadImage(imageView1, storageReference1, imageNames1, currentIndex1);
-    }
-
-    private void showPreviousImage() {
-        currentIndex1 = (currentIndex1 - 1 + imageNames1.size()) % imageNames1.size();
-        loadImage(imageView1, storageReference1, imageNames1, currentIndex1);
-    }
-    private void showNextImage2() {
-        currentIndex2 = (currentIndex2 + 1) % imageNames2.size();
-        loadImage(imageView2, storageReference2, imageNames2, currentIndex2);
-    }
-
-    private void showPreviousImage2() {
-        currentIndex2 = (currentIndex2 - 1 + imageNames2.size()) % imageNames2.size();
-        loadImage(imageView2, storageReference2, imageNames2, currentIndex2);
-    }
-    private void showNextImage3() {
-        currentIndex3 = (currentIndex3 + 1) % imageNames3.size();
-        loadImage(imageView3, storageReference3, imageNames3, currentIndex3);
-    }
-
-    private void showPreviousImage3() {
-        currentIndex3 = (currentIndex3 - 1 + imageNames3.size()) % imageNames3.size();
-        loadImage(imageView3, storageReference3, imageNames3, currentIndex3);
-    }
-
-    private void loadImage(ImageView imageView, StorageReference storageReference, ArrayList<String> imageNames, int currentIndex) {
-        StorageReference imageRef = storageReference.child(imageNames.get(currentIndex));
-        final long ONE_MEGABYTE = 1024 * 1024;
-
-        imageRef.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+// Set click listener for ninth button (Red car image) - update second image view
+        ninthButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onSuccess(byte[] bytes) {
-                // Convert bytes data to Bitmap
-                Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-                // Set Bitmap to ImageView
-                imageView.setImageBitmap(bitmap);
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                // Handle any errors
-                e.printStackTrace();
+            public void onClick(View v) {
+                currentInteriorImages = null;  // Set to null to use the default images
+                updateSecondImageView();
+                updateCarinterior("IS F SPORT");
             }
         });
+
+// Set click listener for tenth button (White car image) - update second image view
+        tenthButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                currentInteriorImages = interiorbrown;
+                currentSecondImageIndex = 0;  // Reset index when switching cars
+                updateSecondImageView();
+                updateCarinterior("IS F SPORT");
+            }
+        });
+
+// Set click listener for eleventh button (Black car image) - update second image view
+        eleventhButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                currentInteriorImages = interiored;
+                currentSecondImageIndex = 0;  // Reset index when switching cars
+                updateSecondImageView();
+                updateCarinterior("IS F SPORT");
+            }
+        });
+
+// Set click listener for fourteenth button (Red car image) - update third image view
+        // Set click listener for fourteenth button (Red car image) - update third image view
+        fourteenthButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                currentengineImages = engine;  // Set to null to use the default images
+                currentThirdImageIndex = 0;  // Reset index
+                updateThirdImageView();
+                updateCarengine("IS F SPORT");
+            }
+        });
+
+// Set click listener for fifteenth button (White car image) - update third image view
+        fifteenthButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                currentengineImages = engine1;  // Set engine images for the first engine
+                currentThirdImageIndex = 0;  // Reset index
+                updateThirdImageView();
+                updateCarengine("IS F SPORT");
+            }
+        });
+
+// Set click listener for sixteenth button (Black car image) - update third image view
+        sixteenthButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                currentengineImages = engine2;  // Set engine images for the second engine
+                currentThirdImageIndex = 0;  // Reset index
+                updateThirdImageView();
+                updateCarengine("IS F SPORT");
+            }
+        });
+
+
+// Set click listener for seventh button (Left for second set of images)
+        seventhButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showPreviousSecondImage();
+            }
+        });
+
+// Set click listener for eighth button (Right for second set of images)
+        eighthButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showNextSecondImage();
+            }
+        });
+
+// Set click listener for twelfth button (Left for third set of images)
+
+
+
+        // Your other click listeners...
+
+        // Initial image display
+        updateImageView();
+        updateSecondImageView();
+        updateThirdImageView();
+        updateFourthImageView();
     }
 
-    // Method to load specific images
-    private void loadSpecificImages() {
-        if (loadDefaultImages) {
-            // Clear the existing image names list
-            imageNames1.clear();
-            // Add the specific image names
-            imageNames1.add("is.jpeg");
-            imageNames1.add("is2.jpeg");
-            imageNames1.add("is3.jpeg");
-            imageNames1.add("is4.jpeg");
-            imageNames1.add("is5.jpeg");
-            // Reset the current index
-            currentIndex1 = 0;
-            // Load the first image
-            loadImage(imageView1, storageReference1, imageNames1, currentIndex1);
-            loadDefaultImages = false;
+    // Method to show the next image (first set)
+    private void showNextImage() {
+        if (currentCarImages != null) {
+            currentImageIndex = (currentImageIndex + 1) % currentCarImages.length;
         } else {
-            // Reset to default images
-            imageNames1.clear();
-            imageNames1.add("is2.jpeg");
-            imageNames1.add("is4.jpeg");
-            imageNames1.add("is3.jpeg");
-            // Reset the current index
-            currentIndex1 = 0;
-            // Load the first image
-            loadImage(imageView1, storageReference1, imageNames1, currentIndex1);
-            loadDefaultImages = true;
+            currentImageIndex = (currentImageIndex + 1) % imageResources.length;
         }
+        updateImageView();
     }
-    private void loadSpecificImages1() {
-        if (loadDefaultImages) {
-            // Clear the existing image names list
-            imageNames1.clear();
-            // Add the specific image names
-            imageNames1.add("isb1.jpeg");
-            imageNames1.add("isb2.jpeg");
-            imageNames1.add("isb3.jpeg");
-            imageNames1.add("isb4.jpeg");
-            imageNames1.add("isb5.jpeg");
-            // Reset the current index
-            currentIndex1 = 0;
-            // Load the first image
-            loadImage(imageView1, storageReference1, imageNames1, currentIndex1);
-            loadDefaultImages = false;
+
+    // Method to show the previous image (first set)
+    private void showPreviousImage() {
+        if (currentCarImages != null) {
+            currentImageIndex = (currentImageIndex - 1 + currentCarImages.length) % currentCarImages.length;
         } else {
-            // Reset to default images
-            imageNames1.clear();
-            imageNames1.add("is2.jpeg");
-            imageNames1.add("is4.jpeg");
-            imageNames1.add("is3.jpeg");
-            // Reset the current index
-            currentIndex1 = 0;
-            // Load the first image
-            loadImage(imageView1, storageReference1, imageNames1, currentIndex1);
-            loadDefaultImages = true;
+            currentImageIndex = (currentImageIndex - 1 + imageResources.length) % imageResources.length;
         }
+        updateImageView();
     }
-    private void loadSpecificImages2() {
-        if (loadDefaultImages) {
-            // Clear the existing image names list
-            imageNames1.clear();
-            // Add the specific image names
-            imageNames1.add("isr1.jpeg");
-            imageNames1.add("isr2.jpeg");
-            imageNames1.add("isr3.jpeg");
-            imageNames1.add("isr4.jpeg");
-            imageNames1.add("isr5.jpeg");
-            // Reset the current index
-            currentIndex1 = 0;
-            // Load the first image
-            loadImage(imageView1, storageReference1, imageNames1, currentIndex1);
-            loadDefaultImages = false;
-        } else {
-            // Reset to default images
-            imageNames1.clear();
-            imageNames1.add("is2.jpeg");
-            imageNames1.add("is4.jpeg");
-            imageNames1.add("is3.jpeg");
-            // Reset the current index
-            currentIndex1 = 0;
-            // Load the first image
-            loadImage(imageView1, storageReference1, imageNames1, currentIndex1);
-            loadDefaultImages = true;
-        }
+
+    // Method to show the next image for the second set
+    private void showNextSecondImage() {
+        currentSecondImageIndex = (currentSecondImageIndex + 1) % interiorblack.length;
+        updateSecondImageView();
     }
-    ////interior///////////////////////////////////////////////////////
-    private void loadSpecificImages3() {
-        if (loadDefaultImages2) {
-            // Clear the existing image names list
-            imageNames2.clear();
-            // Add the specific image names
-            imageNames2.add("isinblc1.jpeg");
-            imageNames2.add("isinblc2.jpeg");
-            // Reset the current index
-            currentIndex2 = 0;
-            // Load the first image
-            loadImage(imageView2, storageReference2, imageNames2, currentIndex2);
-            loadDefaultImages2 = false;
-        } else {
-            // Reset to default images
-            imageNames2.clear();
-            imageNames2.add("isinblc1.jpeg");
-            imageNames2.add("isinblc1.jpeg");
-            imageNames2.add("isinblc1.jpeg");
-            // Reset the current index
-            currentIndex2 = 0;
-            // Load the first image
-            loadImage(imageView2, storageReference2, imageNames2, currentIndex2);
-            loadDefaultImages2 = true;
+
+    // Method to show the previous image for the second set
+    private void showPreviousSecondImage() {
+        currentSecondImageIndex = (currentSecondImageIndex - 1 + interiorblack.length) % interiorblack.length;
+        updateSecondImageView();
+    }
+    // Method to show the next image for the third set
+    private void showNextFourthImage() {
+        currentFourthImageIndex = (currentFourthImageIndex + 1) % wheels1.length;
+        updateFourthImageView();
+    }
+    private void showPreviousFourthImage() {
+        currentFourthImageIndex = (currentFourthImageIndex - 1 + wheels1.length) % wheels1.length;
+        updateFourthImageView();
+    }
+
+
+    // Method to update the first ImageView with the current image
+    // Method to update the ImageView with the current image
+    // Method to update the ImageView with the current image
+    private void updateImageView() {
+        if (currentCarImages != null && currentImageIndex >= 0 && currentImageIndex < currentCarImages.length) {
+            imageView.setImageResource(currentCarImages[currentImageIndex]);
+            // Change to your desired description
+        } else if (currentCarImages == null && currentImageIndex >= 0 && currentImageIndex < imageResources.length) {
+            imageView.setImageResource(imageResources[currentImageIndex]);
+            updateCarDescription("THE IS LINE");
         }
     }
 
-    private void loadSpecificImages4() {
-        if (loadDefaultImages2) {
-            // Clear the existing image names list
-            imageNames2.clear();
-            // Add the specific image names
-            imageNames2.add("isinbro1.jpeg");
-            imageNames2.add("isinbro2.jpeg");
-            // Reset the current index
-            currentIndex2 = 0;
-            // Load the first image
-            loadImage(imageView2, storageReference2, imageNames2, currentIndex2);
-            loadDefaultImages2 = false;
-        } else {
-            // Reset to default images
-            imageNames2.clear();
-            imageNames2.add("isinblc1.jpeg");
-            imageNames2.add("isinblc1.jpeg");
-            imageNames2.add("isinblc1.jpeg");
-            // Reset the current index
-            currentIndex2 = 0;
-            // Load the first image
-            loadImage(imageView2, storageReference2, imageNames2, currentIndex2);
-            loadDefaultImages2 = true;
+    // Method to update the car description text view
+    private void updateCarDescription(String description) {
+        TextView carDescriptionTextView = findViewById(R.id.carDescription);
+        if (carDescriptionTextView != null) {
+            carDescriptionTextView.setVisibility(View.VISIBLE);
+            carDescriptionTextView.setText(description);
+        }
+    }
+    private void updateCarinterior(String description) {
+        TextView carinteriorTextView = findViewById(R.id.carinterior);
+        if (carinteriorTextView != null) {
+            carinteriorTextView.setVisibility(View.VISIBLE);
+            carinteriorTextView.setText(description);
         }
     }
 
-    private void loadSpecificImages5() {
-        if (loadDefaultImages2) {
-            // Clear the existing image names list
-            imageNames2.clear();
-            // Add the specific image names
-            imageNames2.add("isinred1.jpeg");
-            imageNames2.add("isinred2.jpeg");
-            // Reset the current index
-            currentIndex2 = 0;
-            // Load the first image
-            loadImage(imageView2, storageReference2, imageNames2, currentIndex2);
-            loadDefaultImages2 = false;
-        } else {
-            // Reset to default images
-            imageNames2.clear();
-            imageNames2.add("isinblc1.jpeg");
-            imageNames2.add("isinblc1.jpeg");
-            imageNames2.add("isinblc1.jpeg");
-            // Reset the current index
-            currentIndex2 = 0;
-            // Load the first image
-            loadImage(imageView2, storageReference2, imageNames2, currentIndex2);
-            loadDefaultImages2 = true;
+    private void updateCarengine(String description) {
+        TextView carengineTextView = findViewById(R.id.carengine);
+        if (carengineTextView != null) {
+            carengineTextView.setVisibility(View.VISIBLE);
+            carengineTextView.setText(description);
         }
     }
-    //////////////////
-    private void loadSpecificImages6() {
-        if (loadDefaultImages3) {
-            // Clear the existing image names list
-            imageNames3.clear();
-            // Add the specific image names
-            imageNames3.add("is300.jpeg");
-            // Reset the current index
-            currentIndex3 = 0;
-            // Load the first image
-            loadImage(imageView3, storageReference3, imageNames3, currentIndex3);
-            loadDefaultImages3 = false;
-        } else {
-            // Reset to default images
-            imageNames3.clear();
-            imageNames3.add("is300.jpeg");
-            // Reset the current index
-            currentIndex3 = 0;
-            // Load the first image
-            loadImage(imageView3, storageReference3, imageNames3, currentIndex3);
-            loadDefaultImages3 = true;
+    private void updateCarWheels(String description) {
+        TextView carWheelsTextView = findViewById(R.id.carWheels);
+        if (carWheelsTextView != null) {
+            carWheelsTextView.setVisibility(View.VISIBLE);
+            carWheelsTextView.setText(description);
         }
-    }
-    private void loadSpecificImages7() {
-        if (loadDefaultImages3) {
-            // Clear the existing image names list
-            imageNames3.clear();
-            // Add the specific image names
-            imageNames3.add("is350.jpeg");
-            // Reset the current index
-            currentIndex3 = 0;
-            // Load the first image
-            loadImage(imageView3, storageReference3, imageNames3, currentIndex3);
-            loadDefaultImages3 = false;
-        } else {
-            // Reset to default images
-            imageNames3.clear();
-            imageNames3.add("is300.jpeg");
-            // Reset the current index
-            currentIndex3 = 0;
-            // Load the first image
-            loadImage(imageView3, storageReference3, imageNames3, currentIndex3);
-            loadDefaultImages3 = true;
-        }
-    }
-    private void loadSpecificImages8() {
-        if (loadDefaultImages3) {
-            // Clear the existing image names list
-            imageNames3.clear();
-            // Add the specific image names
-            imageNames3.add("isf.jpeg");
-            // Reset the current index
-            currentIndex3 = 0;
-            // Load the first image
-            loadImage(imageView3, storageReference3, imageNames3, currentIndex3);
-            loadDefaultImages3 = false;
-        } else {
-            // Reset to default images
-            imageNames3.clear();
-            imageNames3.add("is300.jpeg");
-            // Reset the current index
-            currentIndex3 = 0;
-            // Load the first image
-            loadImage(imageView3, storageReference3, imageNames3, currentIndex3);
-            loadDefaultImages3 = true;
-        }
-    }
-    private void loadSpecificImages9() {
-        if (loadDefaultImages3) {
-            // Clear the existing image names list
-            imageNames4.clear();
-            // Add the specific image names
-            imageNames4.add("iswh1.jpeg");
-            imageNames4.add("iswh1side.jpeg");
-            // Reset the current index
-            currentIndex4 = 0;
-            // Load the first image
-            loadImage(imageView4, storageReference4, imageNames4, currentIndex4);
-            loadDefaultImages4 = false;
-        } else {
-            // Reset to default images
-            imageNames4.clear();
-            imageNames4.add("iswh1.jpeg");
-            // Reset the current index
-            currentIndex4 = 0;
-            // Load the first image
-            loadImage(imageView4, storageReference4, imageNames4, currentIndex4);
-            loadDefaultImages4 = true;
-        }
-    }
-    private void loadSpecificImages10() {
-        if (loadDefaultImages3) {
-            // Clear the existing image names list
-            imageNames4.clear();
-            // Add the specific image names
-            imageNames4.add("iswh2.jpeg");
-            imageNames4.add("iswh2side.jpeg");
-            // Reset the current index
-            currentIndex4 = 0;
-            // Load the first image
-            loadImage(imageView4, storageReference4, imageNames4, currentIndex4);
-            loadDefaultImages4 = false;
-        } else {
-            // Reset to default images
-            imageNames4.clear();
-            imageNames4.add("iswh1.jpeg");
-            // Reset the current index
-            currentIndex4 = 0;
-            // Load the first image
-            loadImage(imageView4, storageReference4, imageNames4, currentIndex4);
-            loadDefaultImages4 = true;
-        }
-    }
-    private void loadSpecificImages11() {
-        if (loadDefaultImages3) {
-            // Clear the existing image names list
-            imageNames4.clear();
-            // Add the specific image names
-            imageNames4.add("iswh3.jpeg");
-            imageNames4.add("iswh3side.jpeg");
-            // Reset the current index
-            currentIndex4 = 0;
-            // Load the first image
-            loadImage(imageView4, storageReference4, imageNames4, currentIndex4);
-            loadDefaultImages4 = false;
-        } else {
-            // Reset to default images
-            imageNames4.clear();
-            imageNames4.add("iswh1.jpeg");            // Reset the current index
-            currentIndex4 = 0;
-            // Load the first image
-            loadImage(imageView4, storageReference4, imageNames4, currentIndex4);
-            loadDefaultImages4 = true;
-        }
-    }
-    private void loadSpecificImages12() {
-        if (loadDefaultImages3) {
-            // Clear the existing image names list
-            imageNames4.clear();
-            // Add the specific image names
-            imageNames4.add("iswh4.jpeg");
-            imageNames4.add("iswh4side.jpeg");
-
-            // Reset the current index
-            currentIndex4 = 0;
-            // Load the first image
-            loadImage(imageView4, storageReference4, imageNames4, currentIndex4);
-            loadDefaultImages4 = false;
-        } else {
-            // Reset to default images
-            imageNames4.clear();
-            imageNames4.add("iswh1.jpeg");            // Reset the current index
-
-            // Reset the current index
-            currentIndex4 = 0;
-            // Load the first image
-            loadImage(imageView4, storageReference4, imageNames4, currentIndex4);
-            loadDefaultImages4 = true;
-        }
-    }
-    private void showcolor1(String description) {
-        color1.setText(description);
-        color1.setVisibility(View.VISIBLE);
     }
 
-    private void showcolor2(String description) {
-        color2.setText(description);
-        color2.setVisibility(View.VISIBLE);
+
+
+
+
+
+
+
+
+    // Method to update the second ImageView with the current image
+    private void updateSecondImageView() {
+        if (currentInteriorImages != null && currentSecondImageIndex>= 0 && currentSecondImageIndex < currentInteriorImages.length) {
+            secondImageView.setImageResource(currentInteriorImages[currentSecondImageIndex]);
+        } else if (currentSecondImageIndex >= 0 && currentSecondImageIndex < interiorblack.length) {
+            secondImageView.setImageResource(interiorblack[currentSecondImageIndex]);
+        }
     }
 
-    private void showcolor3(String description) {
-        color3.setText(description);
-        color3.setVisibility(View.VISIBLE);
+
+    private void updateThirdImageView() {
+        if (currentengineImages != null && currentThirdImageIndex >= 0 && currentThirdImageIndex < currentengineImages.length) {
+            thirdImageView.setImageResource(currentengineImages[currentThirdImageIndex]);
+        } else if (currentengineImages == null && currentThirdImageIndex >= 0 && currentThirdImageIndex < engine.length) {
+            thirdImageView.setImageResource(engine[currentThirdImageIndex]);
+        }
+    }
+    private void updateFourthImageView() {
+        if (currentWheelsImages!= null && currentFourthImageIndex>= 0 && currentFourthImageIndex < currentWheelsImages.length) {
+            fourthImageView.setImageResource(currentWheelsImages[currentFourthImageIndex]);
+        } else if (currentFourthImageIndex >= 0 && currentFourthImageIndex < wheels1.length) {
+            fourthImageView.setImageResource(wheels1[currentFourthImageIndex]);
+        }
     }
 
-    private void showinteriorcolor1(String description) {
-        interiorcolor1.setText(description);
-        interiorcolor1.setVisibility(View.VISIBLE);
-    }
-    private void showinteriorcolor2(String description) {
-        interiorcolor2.setText(description);
-        interiorcolor2.setVisibility(View.VISIBLE);
-    }
-    private void showinteriorcolor3(String description) {
-        interiorcolor2.setText(description);
-        interiorcolor2.setVisibility(View.VISIBLE);
-    }
-    private void showengine1(String description) {
-        engine1.setText(description);
-        engine1.setVisibility(View.VISIBLE);
-    }
-    private void showengine2(String description) {
-        engine2.setText(description);
-        engine2.setVisibility(View.VISIBLE);
-    }
-    private void showengine3(String description) {
-        engine3.setText(description);
-        engine3.setVisibility(View.VISIBLE);
-    }
-    private void showWheelDescription1(String description) {
-        wheelDescriptionTextView1.setText(description);
-        wheelDescriptionTextView1.setVisibility(View.VISIBLE);
-    }
-    private void showWheelDescription2(String description) {
-        wheelDescriptionTextView2.setText(description);
-        wheelDescriptionTextView2.setVisibility(View.VISIBLE);
-    }
-    private void showWheelDescription3(String description) {
-        wheelDescriptionTextView3.setText(description);
-        wheelDescriptionTextView3.setVisibility(View.VISIBLE);
-    }
-    private void showWheelDescription4(String description) {
-        wheelDescriptionTextView4.setText(description);
-        wheelDescriptionTextView4.setVisibility(View.VISIBLE);
-    }
 
+
+    // Your other methods...
 
 }
+

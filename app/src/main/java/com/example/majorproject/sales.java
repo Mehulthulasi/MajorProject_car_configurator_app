@@ -45,15 +45,28 @@ public class sales extends AppCompatActivity {
             descriptionTextView.setText(carDescription);
         }
 
-        // Find the button by its ID
-        Button nextButton = findViewById(R.id.button);
+        // Find TextViews and Buttons by their IDs
+        TextView textView6 = findViewById(R.id.textView6);
+        TextView textView8 = findViewById(R.id.textView8);
+        Button button = findViewById(R.id.button);
 
-        // Set OnClickListener to the button
-        nextButton.setOnClickListener(new View.OnClickListener() {
+        TextView textView9 = findViewById(R.id.textView9);
+        TextView textView11 = findViewById(R.id.textView11);
+        Button button1 = findViewById(R.id.button1);
+
+        TextView textView12 = findViewById(R.id.textView12);
+        TextView textView14 = findViewById(R.id.textView14);
+        Button button2 = findViewById(R.id.button2);
+
+        // Set OnClickListener for the first button
+        button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Create a new intent to start the next activity
                 Intent nextIntent = new Intent(sales.this, end.class);
+                // Pass the text from the TextViews to the next activity
+                nextIntent.putExtra("textView1", textView6.getText().toString());
+                nextIntent.putExtra("textView2", textView8.getText().toString());
                 // Start the next activity
                 startActivity(nextIntent);
 
@@ -61,6 +74,49 @@ public class sales extends AppCompatActivity {
                 if (carDescription != null) {
                     String key = mDatabase.child("sales").push().getKey();
                     mDatabase.child("sales").child(key).child("carDescription").setValue(carDescription);
+                    mDatabase.child("sales").child(key).child("dealerName").setValue(textView8.getText().toString());
+                }
+            }
+        });
+
+        // Set OnClickListener for the second button
+        button1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Create a new intent to start the next activity
+                Intent nextIntent = new Intent(sales.this, end.class);
+                // Pass the text from the TextViews to the next activity
+                nextIntent.putExtra("textView1", textView9.getText().toString());
+                nextIntent.putExtra("textView2", textView11.getText().toString());
+                // Start the next activity
+                startActivity(nextIntent);
+
+                // Add the car description to the database
+                if (carDescription != null) {
+                    String key = mDatabase.child("sales").push().getKey();
+                    mDatabase.child("sales").child(key).child("carDescription").setValue(textView11.getText().toString());
+                }
+            }
+        });
+
+        // Set OnClickListener for the third button
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Create a new intent to start the next activity
+                Intent nextIntent = new Intent(sales.this, end.class);
+                // Pass the text from the TextViews to the next activity
+                nextIntent.putExtra("textView1", textView12.getText().toString());
+                nextIntent.putExtra("textView2", textView14.getText().toString());
+                // Start the next activity
+                startActivity(nextIntent);
+
+                // Add the car description to the database
+                if (carDescription != null) {
+                    String key = mDatabase.child("sales").push().getKey();
+                    mDatabase.child("sales").child(key).child("carDescription").setValue(carDescription);
+                    mDatabase.child("sales").child(key).child("carDescription").setValue(textView14.getText().toString());
+
                 }
             }
         });
